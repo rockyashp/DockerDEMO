@@ -19,7 +19,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@4
+      - uses: actions/checkout@5
       - name: Listing Running Containers
         run: docker ps
       - name: Showing DOCKER LOGS
@@ -29,6 +29,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@4
+      - uses: actions/checkout@5
       - name : curl
         run: localhost:8080
