@@ -16,6 +16,7 @@ jobs:
       
 
   logs:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@4
@@ -25,6 +26,7 @@ jobs:
         run: docker logs nginx-demo-container
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@4
