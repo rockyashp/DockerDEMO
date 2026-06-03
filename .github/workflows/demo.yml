@@ -1,0 +1,12 @@
+name: DEMO
+
+on: 
+  push: 
+  
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl localhost:8080
