@@ -13,22 +13,33 @@ jobs:
         run: docker build -t demo .
       - name: Run
         run: docker run -d --name nginx-demo-container -p 8080:80 demo
-      
-
-  logs:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@4
+      - name: Upload on docker hub
+        run: docker login
+      - run: docker tagging nginx-demo-container
+      - name: Install Pytest
+        run: pip install pytest-html
+      - run: pytest --html=report.html
       - name: Listing Running Containers
         run: docker ps
       - name: Showing DOCKER LOGS
         run: docker logs nginx-demo-container
-
-  deploy:
-    needs: logs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@4
       - name : curl
-        run: localhost:8080
+        run: localhost:8080  
+
+  # logs:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@4
+  #     - name: Listing Running Containers
+  #       run: docker ps
+  #     - name: Showing DOCKER LOGS
+  #       run: docker logs nginx-demo-container
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@4
+  #     - name : curl
+  #       run: localhost:8080
