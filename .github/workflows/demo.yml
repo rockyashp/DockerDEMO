@@ -15,8 +15,7 @@ jobs:
         run: docker run -d --name nginx-demo-container -p 8080:80 demo
       - name: Install Pytest
         run: pip install pytest-html
-      - run: pytest --html=reports/pytest-report.html \
-          --self-contained-html
+      - run: pytest --html=reports/pytest-report.html --self-contained-html
       - name: Listing Running Containers
         run: docker ps
       - name: Showing DOCKER LOGS
