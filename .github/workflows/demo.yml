@@ -9,5 +9,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - run: docker build -t demo .
       - run: docker run -d --name nginx-demo-container -p 8080:80 demo
       - run: curl localhost:8080
